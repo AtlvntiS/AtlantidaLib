@@ -3,7 +3,6 @@ package co.atlvntis.atlantida.config;
 import co.atlvntis.atlantida.AtlantidaPlugin;
 import co.atlvntis.atlantida.abstractions.PluginDependent;
 import com.google.common.base.CaseFormat;
-import com.sun.tools.javac.util.List;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -11,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 public class ConfigHolder extends PluginDependent<AtlantidaPlugin> {
 
