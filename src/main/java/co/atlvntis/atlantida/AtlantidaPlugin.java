@@ -1,23 +1,27 @@
 package co.atlvntis.atlantida;
 
-import co.atlvntis.atlantida.commands.Imperium;
+import co.atlvntis.atlantida.command.AbstractImperium;
+import co.atlvntis.atlantida.command.Imperium;
 import co.atlvntis.atlantida.config.ConfigHolder;
 import co.atlvntis.atlantida.exceptions.StateErrorException;
-import co.atlvntis.atlantida.lifecycle.ILifecycle;
+import co.atlvntis.atlantida.lifecycle.Lifecycle;
 import co.atlvntis.atlantida.object.BukkitObjectFactory;
 import co.atlvntis.atlantida.object.ObjectFactory;
 import co.atlvntis.atlantida.services.Services;
 import co.atlvntis.atlantida.utils.Log;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 public class AtlantidaPlugin extends JavaPlugin {
 
     private static AtlantidaPlugin instance;
 
-    private Set<ILifecycle> lifecycles = new TreeSet<>();
+    private Set<Lifecycle> lifecycles = new TreeSet<>();
     private List<ConfigHolder> holders = new ArrayList<>();
 
     @Override
@@ -29,7 +33,7 @@ public class AtlantidaPlugin extends JavaPlugin {
 
             load();
 
-            for (ILifecycle lifecycle : lifecycles) {
+            for (Lifecycle lifecycle : lifecycles) {
                 lifecycle.load();
             }
 
@@ -53,9 +57,11 @@ public class AtlantidaPlugin extends JavaPlugin {
 
             enable();
 
-            for (ILifecycle lifecycle : lifecycles) {
+            for (Lifecycle lifecycle : lifecycles) {
                 lifecycle.enable();
             }
+
+            registerCommands();
 
         } catch (StateErrorException e) {
             Log.error(e.getMessage());
@@ -71,7 +77,7 @@ public class AtlantidaPlugin extends JavaPlugin {
 
             disable();
 
-            for (ILifecycle lifecycle : ((TreeSet<ILifecycle>)lifecycles).descendingSet()) {
+            for (Lifecycle lifecycle : ((TreeSet<Lifecycle>)lifecycles).descendingSet()) {
                 lifecycle.disable();
             }
 
@@ -101,11 +107,32 @@ public class AtlantidaPlugin extends JavaPlugin {
     protected List<Imperium> commands() { return Collections.emptyList(); }
     protected List<Listener> listeners() { return Collections.emptyList(); }
 
-    public <T extends ILifecycle> T lifecycle(T lc) {
+    private void registerCommands() {
+
+        try {
+
+            CommandMap map;
+            Field field;
+
+            field = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+            field.setAccessible(true);
+            map = (CommandMap)field.get(Bukkit.getServer());
+
+            for(Imperium imperium : commands()) {
+                if(map.getCommand(imperium.getName()) != null) continue;
+                map.register(this.getDescription().getFullName(), (AbstractImperium) imperium);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public <T extends Lifecycle> T lifecycle(T lc) {
         lifecycles.add(lc);
         return lc;
     }
-
     public <T extends ConfigHolder> T holder(T ch) {
         holders.add(ch);
         return ch;

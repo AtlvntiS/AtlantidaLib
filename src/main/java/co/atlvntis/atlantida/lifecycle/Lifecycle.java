@@ -1,33 +1,13 @@
 package co.atlvntis.atlantida.lifecycle;
 
-import co.atlvntis.atlantida.AtlantidaPlugin;
-import co.atlvntis.atlantida.abstractions.PluginDependent;
+import co.atlvntis.atlantida.exceptions.StateErrorException;
 
-public class Lifecycle<T extends AtlantidaPlugin> extends PluginDependent<T> implements ILifecycle  {
+public interface Lifecycle extends Comparable<BaseLifecycle> {
 
-    private final int priority;
+    void load() throws StateErrorException;
+    void enable() throws StateErrorException;
+    void disable() throws StateErrorException;
 
-    protected Lifecycle(T plugin, int priority) {
-        super(plugin);
-        this.priority = priority;
-    }
+    int getPriority();
 
-    @Override
-    public void load() { /* Implementation should be made by the user */ }
-
-    @Override
-    public void enable() { /* Implementation should be made by the user */ }
-
-    @Override
-    public void disable() { /* Implementation should be made by the user */ }
-
-    @Override
-    public int getPriority() {
-        return priority;
-    }
-
-    @Override
-    public int compareTo(Lifecycle lifecycle) {
-        return - Integer.compare(priority, lifecycle.getPriority());
-    }
 }
