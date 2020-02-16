@@ -12,6 +12,7 @@ public class Services {
 
     public static <T> void provide(Class<T> clazz, T provider, ServicePriority servicePriority) {
         ServicesManager servicesManager =  AtlantidaPlugin.getInstance().getServer().getServicesManager();
+        if(servicesManager.isProvidedFor(clazz)) return;
         servicesManager.register(clazz, provider, AtlantidaPlugin.getInstance(), servicePriority);
     }
 
