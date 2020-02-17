@@ -1,9 +1,15 @@
-package co.atlvntis.atlantida.items;
+package co.atlvntis.atlantida.items.impl;
 
+import co.atlvntis.atlantida.items.Item;
+import co.atlvntis.atlantida.items.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class BukkitSkullItem extends BukkitItem implements SkullItem {
+
+    public BukkitSkullItem(Item item) {
+        super(item);
+    }
 
     public BukkitSkullItem() {
         this(1);

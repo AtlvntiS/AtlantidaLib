@@ -1,6 +1,6 @@
 package co.atlvntis.atlantida.items.builders;
 
-import co.atlvntis.atlantida.items.BukkitItem;
+import co.atlvntis.atlantida.items.impl.BukkitItem;
 import co.atlvntis.atlantida.items.Item;
 import javafx.util.Builder;
 import org.bukkit.Material;
@@ -68,6 +68,10 @@ public class ItemBuilder implements Builder<Item> {
     public ItemBuilder withItemFlags(ItemFlag... itemFlags) {
         this.item.addItemFlags(itemFlags);
         return this;
+    }
+
+    public static ItemBuilder of(Item item) {
+        return new ItemBuilder(item);
     }
 
     public static ItemBuilder of() {

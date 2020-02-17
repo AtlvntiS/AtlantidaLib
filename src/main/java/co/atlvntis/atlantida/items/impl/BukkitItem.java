@@ -1,5 +1,6 @@
-package co.atlvntis.atlantida.items;
+package co.atlvntis.atlantida.items.impl;
 
+import co.atlvntis.atlantida.items.Item;
 import co.atlvntis.atlantida.utils.Colors;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -13,10 +14,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class BukkitItem implements Item{
+public class BukkitItem implements Item {
 
     protected final ItemStack stack;
     protected final ItemMeta meta;
+
+    public BukkitItem(Item item) {
+        this.stack = item.get();
+        this.meta = stack.getItemMeta();
+    }
 
     public BukkitItem() {
         this(Material.BARRIER);
