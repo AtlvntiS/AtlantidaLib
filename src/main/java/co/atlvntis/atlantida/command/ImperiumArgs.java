@@ -27,14 +27,15 @@ public class ImperiumArgs {
 
     public String getArg(int index) {
         ImperiumArg arg = args.get(index);
-        return arg == null ? null : arg.getArg();
+        if(arg == null) throw new NullPointerException("The parameter index " + index + " wasn't specified, try checking before getting.");
+        return arg.getArg();
     }
 
     public String getArg(String paramName) {
         for(ImperiumArg arg : args) {
             if(arg.getName().equals(paramName)) return arg.getArg();
         }
-        return null;
+        throw new NullPointerException("The parameter " + paramName + " wasn't set or specified, try checking before getting.");
     }
 
     public String getArgOrDefault(int index, String def) {
@@ -51,14 +52,15 @@ public class ImperiumArgs {
 
     public <T> T getAdaptedArg(int index, Class<T> adaptClass) {
         ImperiumArg arg = args.get(index);
-        return arg == null ? null : Services.getProvider(Adapter.class).adapt(arg.getArg(), adaptClass);
+        if(arg == null) throw new NullPointerException("The parameter index " + index + " wasn't specified, try checking before getting.");
+        return Services.getProvider(Adapter.class).adapt(arg.getArg(), adaptClass);
     }
 
     public <T> T getAdaptedArg(String paramName, Class<T> adaptClass) {
         for(ImperiumArg arg : args) {
             if(arg.getName().equals(paramName)) return Services.getProvider(Adapter.class).adapt(arg.getArg(), adaptClass);
         }
-        return null;
+        throw new NullPointerException("The parameter " + paramName + " wasn't set or specified, try checking before getting.");
     }
 
     public static ImperiumArgs of(String[] args, Imperium imperium) {

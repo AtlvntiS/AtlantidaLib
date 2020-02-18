@@ -12,6 +12,8 @@ public interface Imperium {
     List<String> getReqParameters();
     List<String> getOptParameters();
 
+    int minArgs();
+    int maxArgs();
     String usage();
 
     boolean execute(CommandSender commandSender, String s, String[] strings);

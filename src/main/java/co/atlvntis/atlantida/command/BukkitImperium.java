@@ -1,6 +1,7 @@
 package co.atlvntis.atlantida.command;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
+import lombok.Setter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.command.CommandSender;
 
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class BukkitImperium extends AbstractImperium {
 
+    @Setter
     private boolean automaticArgCheck = true;
 
     protected BukkitImperium(AtlantidaPlugin plugin, String commandLine) {

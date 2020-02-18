@@ -12,6 +12,7 @@ public class ImperiumSender {
     private final CommandSender commandSender;
 
     public void message(String message) {
+        if(message == null) return;
         commandSender.sendMessage(Colors.format(message));
     }
 

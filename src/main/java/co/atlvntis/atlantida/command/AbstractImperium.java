@@ -57,12 +57,12 @@ public abstract class AbstractImperium extends BukkitCommand implements Imperium
         if(param.startsWith(":")) {
 
             if(!optParameters.isEmpty()) throw new MalformedCommandLineException("The command line can't have a child parameter after an optional one.");
-            reqParameters.add(param);
+            reqParameters.add(param.replace(":", ""));
 
         } else {
 
             if(param.endsWith("?")) {
-                optParameters.add(param.replace(":", "").replace("?", ""));
+                optParameters.add(param.replace("?", ""));
             } else {
                 if(!optParameters.isEmpty()) throw new MalformedCommandLineException("The command line can't have a required parameter after an optional one.");
                 reqParameters.add(param);
@@ -73,7 +73,7 @@ public abstract class AbstractImperium extends BukkitCommand implements Imperium
     }
 
     public int minArgs() {
-        return reqParameters.size();
+        return (parent != null ? parent.minArgs() : 0) + reqParameters.size();
     }
 
     public int maxArgs() {
