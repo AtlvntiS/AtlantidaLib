@@ -28,6 +28,7 @@ public class AtlantidaPlugin extends JavaPlugin {
     @Override
     public final void onLoad() {
 
+        instance = this;
         Services.provide(Adapter.class, new BukkitAdapter());
 
         try {
@@ -47,8 +48,6 @@ public class AtlantidaPlugin extends JavaPlugin {
 
     @Override
     public final void onEnable() {
-
-        instance = this;
 
         try {
 
