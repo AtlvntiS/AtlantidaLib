@@ -2,6 +2,7 @@ package co.atlvntis.atlantida.command;
 
 import co.atlvntis.atlantida.adapter.Adapter;
 import co.atlvntis.atlantida.services.Services;
+import co.atlvntis.atlantida.utils.Log;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -76,6 +77,8 @@ public class ImperiumArgs {
             }
 
         }
+
+        Log.info(argMap.toString());
 
         return new ImperiumArgs(argMap);
 
