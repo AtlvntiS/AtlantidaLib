@@ -6,7 +6,7 @@ import co.atlvntis.atlantida.listener.GuiListener;
 
 public class GuiLifecycle extends BaseLifecycle<AtlantidaPlugin> {
 
-    protected GuiLifecycle(AtlantidaPlugin plugin) {
+    public GuiLifecycle(AtlantidaPlugin plugin) {
         super(plugin, 0);
     }
 
