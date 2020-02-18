@@ -4,6 +4,9 @@ import co.atlvntis.atlantida.AtlantidaPlugin;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.command.CommandSender;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class BukkitImperium extends AbstractImperium {
 
     private boolean automaticArgCheck = true;
@@ -40,7 +43,8 @@ public class BukkitImperium extends AbstractImperium {
     public final void useChild(String arg, ImperiumSender sender, ImperiumArgs args) {
         for(Imperium imperium : childs) {
             if(imperium.getName().equalsIgnoreCase(arg)) {
-                imperium.execute(sender.getCommandSender(), "", args.getArgs().values().toArray(new String[] {}));
+                imperium.execute(sender.getCommandSender(), "",
+                        Arrays.copyOfRange((String[]) args.getArgs().stream().map(ImperiumArg::getArg).toArray(), minArgs(), args.getArgs().size()));
                 return;
             }
         }
