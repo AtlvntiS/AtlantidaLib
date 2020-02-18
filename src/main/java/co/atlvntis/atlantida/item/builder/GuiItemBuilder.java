@@ -1,9 +1,9 @@
-package co.atlvntis.atlantida.items.builders;
+package co.atlvntis.atlantida.item.builder;
 
-import co.atlvntis.atlantida.items.GuiItem;
-import co.atlvntis.atlantida.items.Item;
-import co.atlvntis.atlantida.items.impl.BukkitGuiItem;
-import co.atlvntis.atlantida.items.impl.BukkitSkullItem;
+import co.atlvntis.atlantida.item.GuiItem;
+import co.atlvntis.atlantida.item.Item;
+import co.atlvntis.atlantida.item.impl.BukkitGuiItem;
+import co.atlvntis.atlantida.item.impl.BukkitSkullItem;
 import org.bukkit.Material;
 
 public class GuiItemBuilder extends ItemBuilder {

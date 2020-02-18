@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.items;
+package co.atlvntis.atlantida.item;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

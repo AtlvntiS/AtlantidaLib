@@ -1,7 +1,7 @@
 package co.atlvntis.atlantida.config;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
-import co.atlvntis.atlantida.abstractions.PluginDependent;
+import co.atlvntis.atlantida.PluginDependent;
 import com.google.common.base.CaseFormat;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,19 +22,13 @@ public class ConfigHolder extends PluginDependent<AtlantidaPlugin> {
         try {
 
             Class holderClass = this.getClass();
-
             if (!holderClass.isAnnotationPresent(Holder.class))
                 throw new IllegalStateException(this.getClass().getSimpleName() + " doesn't specify the holder.");
 
             Holder configHolder = (Holder) holderClass.getAnnotation(Holder.class);
 
             File file = new File(plugin.getDataFolder(), configHolder.path());
-
-            file.mkdirs();
-
-            if (!file.exists()) {
-                if(!file.createNewFile()) throw new IOException(configHolder.path() + " failed to create.");
-            }
+            if(!file.mkdirs() || (!file.exists() && !file.createNewFile())) throw new IOException("Something wrong happened when trying to create the file/filedirs.");
 
             FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
 
@@ -55,18 +49,15 @@ public class ConfigHolder extends PluginDependent<AtlantidaPlugin> {
         String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName());
         String parsedPath = (holderItem.path().isEmpty() ? "" : holderItem.path() + ".") + itemName;
 
-        if(configuration.get(parsedPath) != null) {
+        Object value = configuration.get(parsedPath);
 
-            if(field.getType() == String.class) {
-                field.set(this, configuration.getString(parsedPath));
-            } else if (field.getType() == int.class || field.getType() == Integer.class) {
-                field.set(this, configuration.getInt(parsedPath));
-            } else if (field.getType() == double.class || field.getType() == Double.class) {
-                field.set(this, configuration.getDouble(parsedPath));
-            } else if (field.getType() == boolean.class || field.getType() == Boolean.class) {
-                field.set(this, configuration.getBoolean(parsedPath));
-            } else if (field.getType() == List.class && ((ParameterizedType)field.getGenericType()).getActualTypeArguments()[0] == String.class) {
-                field.set(this, configuration.getStringList(parsedPath));
+        if(value != null) {
+
+            Class<?> type = field.getType();
+
+            if(type == String.class || type == int.class || type == double.class || type == boolean.class ||
+                    (field.getType() == List.class && ((ParameterizedType)field.getGenericType()).getActualTypeArguments()[0] == String.class)){
+                field.set(this, value);
             }
 
         } else {

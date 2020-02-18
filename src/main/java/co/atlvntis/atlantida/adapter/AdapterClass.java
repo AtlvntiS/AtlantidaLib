@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.object;
+package co.atlvntis.atlantida.adapter;
 
 import java.lang.reflect.ParameterizedType;
 

@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.abstractions;
+package co.atlvntis.atlantida;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
 

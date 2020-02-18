@@ -1,13 +1,8 @@
 package co.atlvntis.atlantida.inventory;
 
-import co.atlvntis.atlantida.items.GuiItem;
-import co.atlvntis.atlantida.items.Item;
 import co.atlvntis.atlantida.utils.Colors;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-
-import java.util.List;
 
 public abstract class AbstractGui implements Gui {
 
@@ -19,7 +14,6 @@ public abstract class AbstractGui implements Gui {
         this.slots = rows * 9;
     }
 
-    public abstract List<GuiItem> contents();
     public abstract Inventory setup(Player player);
 
     @Override

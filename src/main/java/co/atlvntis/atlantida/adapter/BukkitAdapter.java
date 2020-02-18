@@ -1,20 +1,20 @@
-package co.atlvntis.atlantida.object;
+package co.atlvntis.atlantida.adapter;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class BukkitObjectFactory implements ObjectFactory {
+public class BukkitAdapter implements Adapter {
 
     private final Table<Class<?>, Class<?>, AdapterClass<?, ?>> adapters;
 
-    public BukkitObjectFactory() {
+    public BukkitAdapter() {
         this.adapters = HashBasedTable.create();
     }
 
     @Override
-    public <F, T> T adapt(F from, Class<T> to) {
+    public <F, T> T adapt(F from, Class<? extends T> to) {
 
         if(from.getClass().equals(to)) return (T) from;
 

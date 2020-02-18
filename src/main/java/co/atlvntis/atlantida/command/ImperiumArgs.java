@@ -1,12 +1,7 @@
 package co.atlvntis.atlantida.command;
 
-import co.atlvntis.atlantida.object.BukkitObjectFactory;
-import co.atlvntis.atlantida.object.ObjectFactory;
+import co.atlvntis.atlantida.adapter.Adapter;
 import co.atlvntis.atlantida.services.Services;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
-import com.google.common.collect.Tables;
-import javafx.scene.control.Tab;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -56,12 +51,12 @@ public class ImperiumArgs {
 
     public <T> T getAdaptedArg(int index, Class<T> adaptClass) {
         ImperiumArg arg = args.get(index);
-        return arg == null ? null : Services.getProvider(ObjectFactory.class).adapt(arg.getArg(), adaptClass);
+        return arg == null ? null : Services.getProvider(Adapter.class).adapt(arg.getArg(), adaptClass);
     }
 
     public <T> T getAdaptedArg(String paramName, Class<T> adaptClass) {
         for(ImperiumArg arg : args) {
-            if(arg.getName().equals(paramName)) return Services.getProvider(ObjectFactory.class).adapt(arg.getArg(), adaptClass);
+            if(arg.getName().equals(paramName)) return Services.getProvider(Adapter.class).adapt(arg.getArg(), adaptClass);
         }
         return null;
     }

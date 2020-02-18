@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.items;
+package co.atlvntis.atlantida.item;
 
 public interface SkullItem extends Item {
 

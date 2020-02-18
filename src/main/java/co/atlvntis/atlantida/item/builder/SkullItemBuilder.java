@@ -1,8 +1,8 @@
-package co.atlvntis.atlantida.items.builders;
+package co.atlvntis.atlantida.item.builder;
 
-import co.atlvntis.atlantida.items.impl.BukkitSkullItem;
-import co.atlvntis.atlantida.items.Item;
-import co.atlvntis.atlantida.items.SkullItem;
+import co.atlvntis.atlantida.item.impl.BukkitSkullItem;
+import co.atlvntis.atlantida.item.Item;
+import co.atlvntis.atlantida.item.SkullItem;
 
 public class SkullItemBuilder extends ItemBuilder {
 

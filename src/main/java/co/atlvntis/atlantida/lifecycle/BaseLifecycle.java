@@ -1,7 +1,7 @@
 package co.atlvntis.atlantida.lifecycle;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
-import co.atlvntis.atlantida.abstractions.PluginDependent;
+import co.atlvntis.atlantida.PluginDependent;
 
 public class BaseLifecycle<T extends AtlantidaPlugin> extends PluginDependent<T> implements Lifecycle  {
 
@@ -13,13 +13,13 @@ public class BaseLifecycle<T extends AtlantidaPlugin> extends PluginDependent<T>
     }
 
     @Override
-    public void load() { /* Implementation should be made by the user */ }
+    public void load() { }
 
     @Override
-    public void enable() { /* Implementation should be made by the user */ }
+    public void enable() { }
 
     @Override
-    public void disable() { /* Implementation should be made by the user */ }
+    public void disable() { }
 
     @Override
     public int getPriority() {

@@ -1,12 +1,14 @@
-package co.atlvntis.atlantida.items.impl;
+package co.atlvntis.atlantida.item.impl;
 
-import co.atlvntis.atlantida.items.GuiItem;
-import co.atlvntis.atlantida.items.Item;
+import co.atlvntis.atlantida.inventory.GuiAction;
+import co.atlvntis.atlantida.item.GuiItem;
+import co.atlvntis.atlantida.item.Item;
 import org.bukkit.Material;
 
 public class BukkitGuiItem extends BukkitItem implements GuiItem {
 
     private int slot = 0;
+    private GuiAction action = player -> {};
 
     public BukkitGuiItem(Item item) {
         super(item);
@@ -32,5 +34,15 @@ public class BukkitGuiItem extends BukkitItem implements GuiItem {
     @Override
     public int getSlot() {
         return slot;
+    }
+
+    @Override
+    public void setAction(GuiAction action) {
+        this.action = action;
+    }
+
+    @Override
+    public GuiAction getAction() {
+        return action;
     }
 }

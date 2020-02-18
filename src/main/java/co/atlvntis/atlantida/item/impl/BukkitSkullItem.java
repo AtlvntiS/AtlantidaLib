@@ -1,7 +1,7 @@
-package co.atlvntis.atlantida.items.impl;
+package co.atlvntis.atlantida.item.impl;
 
-import co.atlvntis.atlantida.items.Item;
-import co.atlvntis.atlantida.items.SkullItem;
+import co.atlvntis.atlantida.item.Item;
+import co.atlvntis.atlantida.item.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.SkullMeta;
 

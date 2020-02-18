@@ -5,13 +5,14 @@ import co.atlvntis.atlantida.command.Imperium;
 import co.atlvntis.atlantida.config.ConfigHolder;
 import co.atlvntis.atlantida.exceptions.StateErrorException;
 import co.atlvntis.atlantida.lifecycle.Lifecycle;
-import co.atlvntis.atlantida.object.BukkitObjectFactory;
-import co.atlvntis.atlantida.object.ObjectFactory;
+import co.atlvntis.atlantida.adapter.BukkitAdapter;
+import co.atlvntis.atlantida.adapter.Adapter;
 import co.atlvntis.atlantida.services.Services;
 import co.atlvntis.atlantida.utils.Log;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
@@ -27,7 +28,7 @@ public class AtlantidaPlugin extends JavaPlugin {
     @Override
     public final void onLoad() {
 
-        Services.provide(ObjectFactory.class, new BukkitObjectFactory());
+        Services.provide(Adapter.class, new BukkitAdapter());
 
         try {
 
@@ -62,6 +63,7 @@ public class AtlantidaPlugin extends JavaPlugin {
             }
 
             registerCommands();
+            registerListeners();
 
         } catch (StateErrorException e) {
             Log.error(e.getMessage());
@@ -125,6 +127,16 @@ public class AtlantidaPlugin extends JavaPlugin {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    private void registerListeners() {
+
+        PluginManager pluginManager = getServer().getPluginManager();
+
+        for(Listener listener : listeners()) {
+            pluginManager.registerEvents(listener, this);
         }
 
     }

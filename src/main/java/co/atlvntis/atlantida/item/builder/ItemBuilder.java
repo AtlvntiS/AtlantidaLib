@@ -1,7 +1,7 @@
-package co.atlvntis.atlantida.items.builders;
+package co.atlvntis.atlantida.item.builder;
 
-import co.atlvntis.atlantida.items.impl.BukkitItem;
-import co.atlvntis.atlantida.items.Item;
+import co.atlvntis.atlantida.item.impl.BukkitItem;
+import co.atlvntis.atlantida.item.Item;
 import javafx.util.Builder;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
