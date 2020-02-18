@@ -6,8 +6,8 @@ import org.bukkit.Bukkit;
 public class Log {
 
     public static void info(String message) {
-        Bukkit.getConsoleSender().sendMessage(String.format("§7[%s - v%s] - info", AtlantidaPlugin.getInstance().getDescription().getName(), AtlantidaPlugin.getInstance().getDescription().getVersion()));
-        Bukkit.getConsoleSender().sendMessage("§7" + Colors.format(message));
+        Bukkit.getConsoleSender().sendMessage(String.format("§a[%s - v%s] - info", AtlantidaPlugin.getInstance().getDescription().getName(), AtlantidaPlugin.getInstance().getDescription().getVersion()));
+        Bukkit.getConsoleSender().sendMessage("§a" + Colors.format(message));
     }
 
     public static void warning(String message) {
