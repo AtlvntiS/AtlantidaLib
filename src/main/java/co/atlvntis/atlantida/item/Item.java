@@ -5,11 +5,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface Item {
+public interface Item extends Serializable {
 
     void setMaterial(Material material);
     Material getMaterial();

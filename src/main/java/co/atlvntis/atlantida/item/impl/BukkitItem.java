@@ -19,6 +19,11 @@ public class BukkitItem implements Item {
     protected final ItemStack stack;
     protected final ItemMeta meta;
 
+    protected BukkitItem(ItemStack stack, ItemMeta meta) {
+        this.stack = stack;
+        this.meta = meta;
+    }
+
     public BukkitItem(Item item) {
         this.stack = item.get();
         this.meta = stack.getItemMeta();
@@ -127,4 +132,11 @@ public class BukkitItem implements Item {
         this.stack.setItemMeta(this.meta);
         return this.stack;
     }
+
+    public Item clone() throws CloneNotSupportedException {
+        return new BukkitItem(stack, meta);
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 package co.atlvntis.atlantida.inventory;
 
 import co.atlvntis.atlantida.item.GuiItem;
+import co.atlvntis.atlantida.item.RenderableItem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -32,7 +33,10 @@ public class BaseGui extends AbstractGui {
     @Override
     public Inventory setup(Player player) {
         Inventory inventory = Bukkit.createInventory(new GuiHolder(player.getName(), this), slots, name);
-        for(GuiItem item : items.values()) inventory.setItem(item.getSlot(), item.get());
+        for(GuiItem item : items.values()) {
+            if(item instanceof RenderableItem) ((RenderableItem)item).render(player);
+            inventory.setItem(item.getSlot(), item.get());
+        }
         return inventory;
     }
 
