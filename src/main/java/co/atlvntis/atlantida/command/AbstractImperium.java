@@ -39,11 +39,11 @@ public abstract class AbstractImperium extends BukkitCommand implements Imperium
 
         String trimmedCommandLine = commandLine.trim();
 
-        if(!trimmedCommandLine.contains(" ")) {
+        if(trimmedCommandLine.contains(" ")) {
 
             String[] trimmedSplitCommandLine = trimmedCommandLine.split(" ");
 
-            for(int i = 1; i < trimmedCommandLine.length(); i++) {
+            for(int i = 1; i < trimmedSplitCommandLine.length; i++) {
                 Log.info("Resolving param " + trimmedSplitCommandLine[i]);
                 resolveParam(trimmedSplitCommandLine[i]);
             }
