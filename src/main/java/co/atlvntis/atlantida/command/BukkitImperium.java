@@ -34,7 +34,7 @@ public class BukkitImperium extends AbstractImperium {
         }
 
         if(strings.length < minArgs() || (strings.length > maxArgs() && useChild)) {
-            sender.message(usageMessage());
+            usageExec(sender, args);
             return false;
         }
 
@@ -55,6 +55,10 @@ public class BukkitImperium extends AbstractImperium {
     @Override
     public void exec(ImperiumSender sender, ImperiumArgs args) {
         throw new NotImplementedException("The command '" + getName() + "' isn't implemented.");
+    }
+
+    public void usageExec(ImperiumSender sender, ImperiumArgs args) {
+        sender.message(usageMessage());
     }
 
 }

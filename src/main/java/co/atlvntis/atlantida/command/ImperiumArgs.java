@@ -70,19 +70,13 @@ public class ImperiumArgs {
 
         for(int i = 0; i < args.length && i < imperium.minArgs(); i++) {
 
-            Log.info(args[i]);
-
             if(i < imperium.getOptParameters().size() - 1) {
-                Log.info("1");
                 argList.add(new ImperiumArg(imperium.getOptParameters().get(i), args[i]));
             } else {
-                Log.info("2");
                 argList.add(new ImperiumArg(imperium.getReqParameters().get(i), args[i]));
             }
 
         }
-
-        Log.info(argList.toString());
 
         return new ImperiumArgs(argList);
 
