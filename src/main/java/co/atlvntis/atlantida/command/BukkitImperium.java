@@ -8,12 +8,12 @@ import org.bukkit.command.CommandSender;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class BukkitImperium extends AbstractImperium {
+public class BukkitImperium<T extends AtlantidaPlugin> extends AbstractImperium<T> {
 
     @Setter
     private boolean automaticArgCheck = true;
 
-    protected BukkitImperium(AtlantidaPlugin plugin, String commandLine) {
+    protected BukkitImperium(T plugin, String commandLine) {
         super(plugin, commandLine);
     }
 

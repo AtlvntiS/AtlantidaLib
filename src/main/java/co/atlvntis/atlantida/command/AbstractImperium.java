@@ -9,9 +9,9 @@ import org.bukkit.command.defaults.BukkitCommand;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractImperium extends BukkitCommand implements Imperium {
+public abstract class AbstractImperium<T extends AtlantidaPlugin> extends BukkitCommand implements Imperium {
 
-    protected final AtlantidaPlugin plugin;
+    protected final T plugin;
 
     protected Imperium parent;
     protected List<String> reqParameters;
@@ -19,7 +19,7 @@ public abstract class AbstractImperium extends BukkitCommand implements Imperium
     protected boolean useChild;
     protected List<AbstractImperium> childs;
 
-    protected AbstractImperium(AtlantidaPlugin plugin, String commandLine) {
+    protected AbstractImperium(T plugin, String commandLine) {
 
         super(commandLine.contains(" ") ? commandLine.trim().split(" ")[0] : commandLine.trim());
 
