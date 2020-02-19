@@ -66,21 +66,25 @@ public class ImperiumArgs {
 
     public static ImperiumArgs of(String[] args, Imperium imperium) {
 
-        List<ImperiumArg> argMap = new ArrayList<>();
+        List<ImperiumArg> argList = new ArrayList<>();
 
         for(int i = 0; i < args.length && i < imperium.minArgs(); i++) {
 
+            Log.info(args[i]);
+
             if(i < imperium.getOptParameters().size() - 1) {
-                argMap.add(new ImperiumArg(imperium.getOptParameters().get(i), args[i]));
+                Log.info("1");
+                argList.add(new ImperiumArg(imperium.getOptParameters().get(i), args[i]));
             } else {
-                argMap.add(new ImperiumArg(imperium.getReqParameters().get(i), args[i]));
+                Log.info("2");
+                argList.add(new ImperiumArg(imperium.getReqParameters().get(i), args[i]));
             }
 
         }
 
-        Log.info(argMap.toString());
+        Log.info(argList.toString());
 
-        return new ImperiumArgs(argMap);
+        return new ImperiumArgs(argList);
 
     }
 

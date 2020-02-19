@@ -2,6 +2,7 @@ package co.atlvntis.atlantida.command;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
 import co.atlvntis.atlantida.exceptions.MalformedCommandLineException;
+import co.atlvntis.atlantida.utils.Log;
 import lombok.Setter;
 import org.bukkit.command.defaults.BukkitCommand;
 
@@ -43,6 +44,7 @@ public abstract class AbstractImperium extends BukkitCommand implements Imperium
             String[] trimmedSplitCommandLine = trimmedCommandLine.split(" ");
 
             for(int i = 1; i < trimmedCommandLine.length(); i++) {
+                Log.info("Resolving param " + trimmedSplitCommandLine[i]);
                 resolveParam(trimmedSplitCommandLine[i]);
             }
 
