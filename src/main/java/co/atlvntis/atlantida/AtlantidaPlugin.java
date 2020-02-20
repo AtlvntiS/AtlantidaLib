@@ -128,6 +128,7 @@ public class AtlantidaPlugin extends JavaPlugin {
             e.printStackTrace();
         }
 
+
     }
 
     private void registerListeners() {
