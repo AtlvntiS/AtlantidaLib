@@ -6,19 +6,19 @@ import co.atlvntis.atlantida.item.SkullItem;
 
 public class SkullItemBuilder extends ItemBuilder {
 
-    private SkullItemBuilder(Item item) {
+    protected SkullItemBuilder(Item item) {
         super(new BukkitSkullItem(item));
     }
 
-    private SkullItemBuilder() {
+    protected SkullItemBuilder() {
         this(1);
     }
 
-    private SkullItemBuilder(int amount) {
+    protected SkullItemBuilder(int amount) {
         super(new BukkitSkullItem(amount));
     }
 
-    private SkullItemBuilder withOwner(String owner) {
+    public SkullItemBuilder withOwner(String owner) {
         ((SkullItem)this.item).setOwner(owner);
         return this;
     }
