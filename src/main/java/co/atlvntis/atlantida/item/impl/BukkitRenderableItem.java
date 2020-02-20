@@ -2,6 +2,7 @@ package co.atlvntis.atlantida.item.impl;
 
 import co.atlvntis.atlantida.item.Item;
 import co.atlvntis.atlantida.item.RenderableItem;
+import lombok.SneakyThrows;
 import org.apache.commons.lang.SerializationUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,9 +15,10 @@ public class BukkitRenderableItem extends BukkitGuiItem implements RenderableIte
     private RenderableItem cloneItem;
     private BiConsumer<RenderableItem, Player> biConsumer = (i, p) -> {};
 
+    @SneakyThrows
     public BukkitRenderableItem(Item item) {
         super(item);
-        this.cloneItem = (RenderableItem) SerializationUtils.clone(this);
+        this.cloneItem = (RenderableItem) this.clone();
     }
 
     public BukkitRenderableItem() {

@@ -1,5 +1,6 @@
 package co.atlvntis.atlantida.item.builder;
 
+import co.atlvntis.atlantida.inventory.GuiAction;
 import co.atlvntis.atlantida.item.GuiItem;
 import co.atlvntis.atlantida.item.Item;
 import co.atlvntis.atlantida.item.impl.BukkitGuiItem;
@@ -26,6 +27,11 @@ public class GuiItemBuilder extends ItemBuilder {
 
     public GuiItemBuilder withSlot(int slot) {
         ((GuiItem)item).setSlot(slot);
+        return this;
+    }
+
+    public GuiItemBuilder withAction(GuiAction action) {
+        ((GuiItem)item).setAction(action);
         return this;
     }
 
