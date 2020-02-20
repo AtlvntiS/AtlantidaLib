@@ -86,7 +86,7 @@ public class ItemBuilder implements Builder<Item> {
         return new ItemBuilder(material, amount);
     }
 
-    public <T> T getAndCast(Class<T> cast) {
+    public <T> T castedBuild(Class<T> cast) {
         return cast.cast(this);
     }
 

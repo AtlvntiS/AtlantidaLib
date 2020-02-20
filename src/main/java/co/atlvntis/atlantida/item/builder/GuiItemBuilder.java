@@ -24,14 +24,9 @@ public class GuiItemBuilder extends ItemBuilder {
         this(new BukkitGuiItem(material, amount));
     }
 
-    private GuiItemBuilder setSlot(int slot) {
+    public GuiItemBuilder withSlot(int slot) {
         ((GuiItem)item).setSlot(slot);
         return this;
-    }
-
-    @Override
-    public Item build() {
-        return (GuiItem) item;
     }
 
     public static GuiItemBuilder of(Item item) {
