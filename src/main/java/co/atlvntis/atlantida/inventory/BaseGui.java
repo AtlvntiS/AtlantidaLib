@@ -1,7 +1,7 @@
 package co.atlvntis.atlantida.inventory;
 
+import co.atlvntis.atlantida.item.Item;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -35,6 +35,10 @@ public class BaseGui extends AbstractGui {
             items.get(event.getSlot()).getAction().run((Player)event.getWhoClicked());
         }
 
+    }
+
+    protected <T extends Item> GuiItem<T> guiItem(T item) {
+        return new GuiItem<>(item);
     }
 
     @Override

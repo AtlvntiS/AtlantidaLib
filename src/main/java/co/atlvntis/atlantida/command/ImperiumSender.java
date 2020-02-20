@@ -1,6 +1,6 @@
 package co.atlvntis.atlantida.command;
 
-import co.atlvntis.atlantida.utils.Colors;
+import co.atlvntis.atlantida.util.Colors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;

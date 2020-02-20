@@ -1,9 +1,8 @@
 package co.atlvntis.atlantida.command;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
-import co.atlvntis.atlantida.exceptions.MalformedCommandLineException;
-import co.atlvntis.atlantida.utils.Log;
-import lombok.Setter;
+import co.atlvntis.atlantida.exception.MalformedCommandLineException;
+import co.atlvntis.atlantida.util.Log;
 import org.bukkit.command.defaults.BukkitCommand;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package co.atlvntis.atlantida.inventory;
 
-import co.atlvntis.atlantida.utils.Colors;
+import co.atlvntis.atlantida.util.Colors;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 

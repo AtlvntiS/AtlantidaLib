@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.exceptions;
+package co.atlvntis.atlantida.exception;
 
 public class MalformedCommandLineException extends RuntimeException {
 

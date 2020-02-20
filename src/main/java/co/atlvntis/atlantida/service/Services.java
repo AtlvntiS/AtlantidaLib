@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.services;
+package co.atlvntis.atlantida.service;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
 import org.bukkit.plugin.ServicePriority;

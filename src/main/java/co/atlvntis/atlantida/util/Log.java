@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.utils;
+package co.atlvntis.atlantida.util;
 
 import co.atlvntis.atlantida.AtlantidaPlugin;
 import org.bukkit.Bukkit;

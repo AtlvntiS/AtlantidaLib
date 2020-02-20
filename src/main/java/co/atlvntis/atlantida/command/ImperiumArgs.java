@@ -1,8 +1,7 @@
 package co.atlvntis.atlantida.command;
 
 import co.atlvntis.atlantida.adapter.Adapter;
-import co.atlvntis.atlantida.services.Services;
-import co.atlvntis.atlantida.utils.Log;
+import co.atlvntis.atlantida.service.Services;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

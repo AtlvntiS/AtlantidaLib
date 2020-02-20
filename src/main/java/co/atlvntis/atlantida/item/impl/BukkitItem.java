@@ -1,7 +1,7 @@
 package co.atlvntis.atlantida.item.impl;
 
 import co.atlvntis.atlantida.item.Item;
-import co.atlvntis.atlantida.utils.Colors;
+import co.atlvntis.atlantida.util.Colors;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;

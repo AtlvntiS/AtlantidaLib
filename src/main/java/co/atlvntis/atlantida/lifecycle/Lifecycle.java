@@ -1,6 +1,6 @@
 package co.atlvntis.atlantida.lifecycle;
 
-import co.atlvntis.atlantida.exceptions.StateErrorException;
+import co.atlvntis.atlantida.exception.StateErrorException;
 
 public interface Lifecycle extends Comparable<BaseLifecycle> {
 

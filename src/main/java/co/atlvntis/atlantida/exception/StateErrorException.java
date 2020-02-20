@@ -1,4 +1,4 @@
-package co.atlvntis.atlantida.exceptions;
+package co.atlvntis.atlantida.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
