@@ -86,6 +86,10 @@ public class ItemBuilder implements Builder<Item> {
         return new ItemBuilder(material, amount);
     }
 
+    public <T> T getAndCast(Class<T> cast) {
+        return cast.cast(this);
+    }
+
     @Override
     public Item build() {
         return item;
