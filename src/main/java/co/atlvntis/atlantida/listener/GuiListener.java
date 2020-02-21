@@ -15,6 +15,7 @@ public class GuiListener implements Listener {
 
         GuiHolder guiHolder = (GuiHolder) event.getInventory().getHolder();
         Gui gui = guiHolder.getGui();
+        gui.handleClick(event);
 
     }
 

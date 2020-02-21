@@ -5,4 +5,6 @@ public interface SkullItem extends Item {
     void setOwner(String owner);
     String getOwner();
 
+    void setTexture(String texture);
+
 }
