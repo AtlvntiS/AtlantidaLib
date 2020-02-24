@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.inventory.ItemStack;
 
 @Getter
-@Builder
 public class ClickableItem {
 
     private final Item item;
@@ -15,6 +14,11 @@ public class ClickableItem {
 
     private ClickableItem(Item item) {
         this.item = item;
+    }
+
+    public ClickableItem setAction(Action action) {
+        this.action = action;
+        return this;
     }
 
     public ItemStack getItemStack() {
