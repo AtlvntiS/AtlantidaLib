@@ -55,7 +55,9 @@ public class InventoryContent {
     public void populate(Inventory inventory) {
         for (int i = 0; i < items.length; i++) {
             for (int i1 = 0; i1 < 9; i1++) {
-                inventory.setItem(i + i1, items[i][i1].getItemStack());
+                ClickableItem clickableItem = items[i][i1];
+                if(clickableItem != null)
+                    inventory.setItem(i + i1, items[i][i1].getItemStack());
             }
         }
     }
