@@ -57,7 +57,7 @@ public class InventoryContent {
             for (int i1 = 0; i1 < 9; i1++) {
                 ClickableItem clickableItem = items[i][i1];
                 if(clickableItem != null)
-                    inventory.setItem(i + i1, items[i][i1].getItemStack());
+                    inventory.setItem((i * 9) + i1, items[i][i1].getItemStack());
             }
         }
     }

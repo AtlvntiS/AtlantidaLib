@@ -16,6 +16,8 @@ public class InventoryListener implements Listener {
         if(!(event.getInventory().getHolder() instanceof InventoryWrapper)) return;
         if(event.getClickedInventory() != event.getView().getTopInventory()) return;
 
+        event.setCancelled(true);
+
         InventoryWrapper wrapper = (InventoryWrapper) event.getInventory().getHolder();
         wrapper.getInventoryContent().handleClick(event.getSlot());
 
