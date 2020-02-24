@@ -21,7 +21,7 @@ import java.util.*;
 
 public class AtlantidaPlugin extends JavaPlugin {
 
-    private static Lazy<AtlantidaPlugin> lazyInstance;
+    private static final Lazy<AtlantidaPlugin> lazyInstance = new Lazy<>();
 
     private Set<Lifecycle> lifecycles = new TreeSet<>();
     private List<ConfigHolder> holders = new ArrayList<>();
