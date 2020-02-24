@@ -1,5 +1,6 @@
 package co.atlvntis.atlantida;
 
+import co.atlvntis.atlantida.cache.Lazy;
 import co.atlvntis.atlantida.command.AbstractImperium;
 import co.atlvntis.atlantida.command.Imperium;
 import co.atlvntis.atlantida.config.ConfigHolder;
@@ -20,7 +21,7 @@ import java.util.*;
 
 public class AtlantidaPlugin extends JavaPlugin {
 
-    private static AtlantidaPlugin instance;
+    private static Lazy<AtlantidaPlugin> lazyInstance;
 
     private Set<Lifecycle> lifecycles = new TreeSet<>();
     private List<ConfigHolder> holders = new ArrayList<>();
@@ -28,7 +29,7 @@ public class AtlantidaPlugin extends JavaPlugin {
     @Override
     public final void onLoad() {
 
-        instance = this;
+        lazyInstance.compute(() -> (this));
         Services.provide(Adapter.class, new BukkitAdapter());
 
         try {
@@ -51,7 +52,7 @@ public class AtlantidaPlugin extends JavaPlugin {
 
         try {
 
-            for(ConfigHolder holder : holders) {
+            for (ConfigHolder holder : holders) {
                 holder.load();
             }
 
@@ -78,7 +79,7 @@ public class AtlantidaPlugin extends JavaPlugin {
 
             disable();
 
-            for (Lifecycle lifecycle : ((TreeSet<Lifecycle>)lifecycles).descendingSet()) {
+            for (Lifecycle lifecycle : ((TreeSet<Lifecycle>) lifecycles).descendingSet()) {
                 lifecycle.disable();
             }
 
@@ -90,7 +91,9 @@ public class AtlantidaPlugin extends JavaPlugin {
     }
 
     protected void load() throws StateErrorException { /* The user will implement this if needed */ }
+
     protected void enable() throws StateErrorException { /* The user will implement this if needed */ }
+
     protected void disable() throws StateErrorException { /* The user will implement this if needed */ }
 
     public void info(String message) {
@@ -105,8 +108,13 @@ public class AtlantidaPlugin extends JavaPlugin {
         return new StateErrorException(message);
     }
 
-    protected List<Imperium> commands() { return Collections.emptyList(); }
-    protected List<Listener> listeners() { return Collections.emptyList(); }
+    protected List<Imperium> commands() {
+        return Collections.emptyList();
+    }
+
+    protected List<Listener> listeners() {
+        return Collections.emptyList();
+    }
 
     private void registerCommands() {
 
@@ -117,10 +125,10 @@ public class AtlantidaPlugin extends JavaPlugin {
 
             field = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             field.setAccessible(true);
-            map = (CommandMap)field.get(Bukkit.getServer());
+            map = (CommandMap) field.get(Bukkit.getServer());
 
-            for(Imperium imperium : commands()) {
-                if(map.getCommand(imperium.getName()) != null) continue;
+            for (Imperium imperium : commands()) {
+                if (map.getCommand(imperium.getName()) != null) continue;
                 map.register(this.getDescription().getFullName(), (AbstractImperium) imperium);
             }
 
@@ -135,7 +143,7 @@ public class AtlantidaPlugin extends JavaPlugin {
 
         PluginManager pluginManager = getServer().getPluginManager();
 
-        for(Listener listener : listeners()) {
+        for (Listener listener : listeners()) {
             pluginManager.registerEvents(listener, this);
         }
 
@@ -145,16 +153,17 @@ public class AtlantidaPlugin extends JavaPlugin {
         lifecycles.add(lc);
         return lc;
     }
+
     public <T extends ConfigHolder> T holder(T ch) {
         holders.add(ch);
         return ch;
     }
 
     public static AtlantidaPlugin getInstance() {
-        if(instance == null) {
+        if (lazyInstance.isAbsent()) {
             throw new IllegalStateException("A instância da classe main é nula.");
         }
-        return instance;
+        return lazyInstance.get();
     }
 
 }
